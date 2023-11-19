@@ -1,5 +1,4 @@
 import gradio as gr
-import requests
 from PIL import Image
 from io import BytesIO
 import sqlite3
@@ -42,7 +41,7 @@ with gr.Blocks() as demo:
             id_value = gr.Textbox(label="ID", visible=False)
             id_box = gr.Textbox(label="Current / Total", interactive=False)
             question_box = gr.Textbox(label="Question", interactive=False)
-            answer_box = gr.Textbox(label="Answer")
+            answer_box = gr.Textbox(label="Answer", autofocus=True)
             submit_button = gr.Button("Submit")
         with gr.Column():
             output_box = gr.Textbox(label="Result")
