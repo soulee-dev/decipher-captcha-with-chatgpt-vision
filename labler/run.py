@@ -9,7 +9,7 @@ c = conn.cursor()
 
 
 def load_data():
-    c.execute("SELECT id, image, question FROM captchas WHERE answer IS NULL")
+    c.execute("SELECT id, image, question FROM captchas WHERE answer IS NULL LIMIT 1")
     row = c.fetchone()
     if row:
         _id, image, question = row
