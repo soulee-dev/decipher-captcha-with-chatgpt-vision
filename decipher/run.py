@@ -126,6 +126,10 @@ def select_table_row(evt: gr.SelectData, data):
     ), open_image(data.iloc[evt.index[0]]["Image Data"])
 
 
+def save_data(data):
+    data.to_excel("data.xlsx")
+
+
 with gr.Blocks() as demo:
     with gr.Row():
         with gr.Column():
@@ -179,6 +183,7 @@ with gr.Blocks() as demo:
                 color_map={"+": "red", "-": "green"},
             )
             img = gr.Image()
+            save_button = gr.Button("Save")
 
         table.select(
             fn=select_table_row, inputs=[hidden_table], outputs=[highlighted_text, img]
@@ -194,6 +199,11 @@ with gr.Blocks() as demo:
                 max_token_text,
             ],
             outputs=[average_similarity_texbox, hidden_table, table],
+        )
+
+        save_button.click(
+            fn=save_data,
+            inputs=[table],
         )
 
 demo.launch()
